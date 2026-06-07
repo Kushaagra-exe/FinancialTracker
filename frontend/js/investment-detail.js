@@ -8,6 +8,17 @@ const investmentId =
 
 async function loadInvestment() {
 
+    let invested = 0;
+
+    investment.transactions.forEach(t => {
+
+        if(t.type === "BUY")
+            invested += t.amount;
+
+        if(t.type === "SELL")
+            invested -= t.amount;
+    });
+
     const investment =
         await getInvestment(
             investmentId
@@ -34,7 +45,25 @@ async function loadInvestment() {
 
         </tr>
         `;
+
     });
+    
+    document.getElementById(
+        "investedAmount"
+    ).innerText = `₹${invested}`;
+    
+    document.getElementById(
+        "currentValue"
+    ).innerText =
+        `₹${investment.current_value}`;
+    
+    document.getElementById(
+        "profit"
+    ).innerText =
+        `₹${
+            investment.current_value
+            - invested
+        }`;
 }
 
 async function saveTransaction() {

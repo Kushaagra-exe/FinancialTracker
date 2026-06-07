@@ -38,13 +38,38 @@ async function createInvestment(data) {
 
 async function addTransaction(id, data) {
     const response = await fetch(
-        `${BASE_URL}/investments/${id}/transaction`,
+        `${BASE_URL}/investments/${id}/transaction/`,
         {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(data)
+        }
+    );
+
+    return await response.json();
+}
+
+async function updateCurrentValue(
+    id,
+    currentValue
+) {
+
+    const response = await fetch(
+        `${BASE_URL}/investments/${id}/current-value`,
+        {
+            method: "PUT",
+
+            headers: {
+                "Content-Type":
+                    "application/json"
+            },
+
+            body: JSON.stringify({
+                current_value:
+                    currentValue
+            })
         }
     );
 
