@@ -1,0 +1,46 @@
+body {
+    background-color: #f5f7fa;
+}
+
+.navbar {
+    background: #1f2937;
+}
+
+.navbar-brand,
+.nav-link {
+    color: white !important;
+}
+
+.card-stat {
+    border-radius: 15px;
+    transition: 0.3s;
+}
+
+.card-stat:hover {
+    transform: translateY(-5px);
+}
+
+.table-container {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+}
+
+.investment-card {
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.investment-card:hover {
+    transform: scale(1.03);
+}
+
+.profit {
+    color: green;
+    font-weight: bold;
+}
+
+.loss {
+    color: red;
+    font-weight: bold;
+}
