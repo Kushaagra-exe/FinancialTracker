@@ -1,14 +1,16 @@
 from fastapi import APIRouter
 from app.schemas.investment import (
     CreateInvestment,
-    AddTransaction
+    AddTransaction,
+    UpdateCurrentValue
 )
 
 from app.services.investment_service import (
     create_investment,
     get_all_investments,
     get_investment,
-    add_transaction
+    add_transaction,
+    update_current_value
 )
 
 router = APIRouter()
@@ -49,4 +51,22 @@ async def transaction(
 
     return {
         "message": "Transaction Added"
+    }
+
+
+@router.put(
+    "/{investment_id}/current-value"
+)
+async def update_value(
+    investment_id: str,
+    data: UpdateCurrentValue
+):
+
+    await update_current_value(
+        investment_id,
+        data.current_value
+    )
+
+    return {
+        "message": "Updated"
     }

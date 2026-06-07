@@ -2,10 +2,25 @@ from app.database.mongodb import db
 from bson import ObjectId
 
 
+async def update_current_value(
+    investment_id,
+    current_value
+):
+
+    await db.investments.update_one(
+        {"_id": ObjectId(investment_id)},
+        {
+            "$set": {
+                "current_value": current_value
+            }
+        }
+    )
+
 async def create_investment(data):
 
     investment = {
         "name": data.name,
+        "current_value": data.initial_amount,
         "transactions": [
             {
                 "type": "BUY",

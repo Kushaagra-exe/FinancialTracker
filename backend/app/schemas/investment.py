@@ -1,6 +1,8 @@
 from pydantic import BaseModel
 from datetime import date
 
+class UpdateCurrentValue(BaseModel):
+    current_value: float
 
 class Transaction(BaseModel):
     type: str

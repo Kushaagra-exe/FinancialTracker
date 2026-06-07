@@ -17,7 +17,10 @@ def calculate_metrics(investment):
 
     net_invested = buy_total - sell_total
 
-    current_value = net_invested * 1.15
+    current_value = investment.get(
+        "current_value",
+        net_invested
+    )
 
     profit = current_value - net_invested
 
@@ -27,7 +30,7 @@ def calculate_metrics(investment):
         "current_value": current_value,
         "net_profit": profit,
         "return_percentage":
-            round((profit / net_invested) * 100, 2)
+            (profit / net_invested) * 100
             if net_invested > 0
             else 0
     }
